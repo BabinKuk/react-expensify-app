@@ -32,8 +32,8 @@ export default class ExpenseForm extends React.Component {
         const amount = e.target.value;
         //console.log(amount);
         
-        //check amount format: 1234.44, 345677.7, 333333
-        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
+        //check amount format: 1234,44, 345677,7, 333333
+        if (!amount || amount.match(/^\d{1,}(\,\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     };

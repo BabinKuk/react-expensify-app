@@ -50,7 +50,7 @@ test('Test render ExpenseForm set note on textarea change', () => {
 });
 
 test('Test render ExpenseForm set valid amount', () => {
-    const value = '22.50';
+    const value = '22,50';
     const wrapper = shallow(<ExpenseForm />);
     // simulate event, input [1]
     wrapper.find('input').at(1).simulate('change', {
