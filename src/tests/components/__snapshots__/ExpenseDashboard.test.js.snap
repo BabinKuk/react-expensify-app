@@ -4,5 +4,6 @@ exports[`Test Dashboard Page rendering 1`] = `
 <div>
   <[object Object] />
   <[object Object] />
+  <[object Object] />
 </div>
 `;
