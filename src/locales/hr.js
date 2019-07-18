@@ -21,4 +21,4 @@ numeral.register('locale', 'hr', {
 });
 
 // switch between locales
-//numeral.locale('hr');
+numeral.locale('hr');
