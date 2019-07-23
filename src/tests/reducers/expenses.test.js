@@ -1,13 +1,13 @@
 import expensesReducer from '../../reducers/expenses';
 import expenses from '../fixtures/expenses';
 
-test('Test set default expense state, empty array', () => {
+test('Test reducers set default expense state, empty array', () => {
     const state = expensesReducer(undefined, { type: '@@INIT' });
 
     expect(state).toEqual([]);
 });
 
-test('Test remove expense by id', () => {
+test('Test reducers remove expense by id', () => {
     const action = {
         type: 'REMOVE_EXPENSE',
         id: expenses[1].id
@@ -17,7 +17,7 @@ test('Test remove expense by id', () => {
     expect(state).toEqual([ expenses[0], expenses[2] ]);
 });
 
-test('Test remove expense for id not found, expect nothing to be removed', () => {
+test('Test reducers remove expense for id not found, expect nothing to be removed', () => {
     const action = {
         type: 'REMOVE_EXPENSE',
         id: '-1'
@@ -27,7 +27,7 @@ test('Test remove expense for id not found, expect nothing to be removed', () =>
     expect(state).toEqual(expenses);
 });
 
-test('Test add expense', () => {
+test('Test reducers add expense', () => {
     const expense = {
             id: '111',
             description: 'test',
@@ -44,7 +44,7 @@ test('Test add expense', () => {
     expect(state).toEqual([ ...expenses, expense ]);
 });
 
-test('Test edit expense', () => {
+test('Test reducers edit expense', () => {
     const action = {
         type: 'EDIT_EXPENSE',
         id: expenses[2].id,
@@ -59,7 +59,7 @@ test('Test edit expense', () => {
     expect(state[2]).toEqual({...state[2], ...action.updates});
 });
 
-test('Test edit expense for id not found, expect nothing to be edited', () => {
+test('Test reducers edit expense for id not found, expect nothing to be edited', () => {
     const action = {
         type: 'EDIT_EXPENSE',
         id: '-33',
@@ -72,4 +72,14 @@ test('Test edit expense for id not found, expect nothing to be edited', () => {
     const state = expensesReducer(expenses, action);
     // no changes to expenses array
     expect(state).toEqual(expenses);
+});
+
+test('Test reducers set expenses', () => {
+    const action = {
+        type: 'SET_EXPENSES',
+        expenses: [expenses[1]]
+    };
+    const state = expensesReducer(expenses, action);
+
+    expect(state).toEqual([expenses[1]]);
 });
