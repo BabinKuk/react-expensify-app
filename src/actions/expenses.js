@@ -37,13 +37,24 @@ export const startAddExpense = (expenseData = {}) => {
     };
 };
 
-// REMOVE_EXPENSE
+// REMOVE_EXPENSEc
 export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
 
-// EDIT_EXPENSE
+// removing expense from db - async action
+export const startRemoveExpense = ({ id } = {}) => {
+    return (dispatch) => {
+        // remove data
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            // dispatch data
+            dispatch(removeExpense({ id }));
+        });
+    };
+};
+
+// EDIT_EXPENSE - changes redux store
 export const editExpense = ((id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
