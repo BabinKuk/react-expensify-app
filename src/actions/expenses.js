@@ -37,7 +37,7 @@ export const startAddExpense = (expenseData = {}) => {
     };
 };
 
-// REMOVE_EXPENSEc
+// REMOVE_EXPENSE - changes redux store
 export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
@@ -60,6 +60,17 @@ export const editExpense = ((id, updates) => ({
     id,
     updates
 }));
+
+// update data to db - async action
+export const startEditExpense = (id, updates) => {
+    return (dispatch) => {
+        // access firebase and update data
+        return database.ref(`expenses/${id}`).update(updates).then(() => {
+            // dispatch data
+            dispatch(editExpense(id, updates));
+        });
+    };
+};
 
 // SET_EXPENSES - expenses array from db
 export const setExpenses = (expenses) => ({
