@@ -10,7 +10,7 @@ exports[`Test Header rendering 1`] = `
       activeClassName="is-active"
       ariaCurrent="true"
       exact={true}
-      to="/"
+      to="/dashboard"
     >
       Dashboard
     </NavLink>
