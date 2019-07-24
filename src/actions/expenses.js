@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import database from '../firebase/firebase';
+import { get } from 'http';
 
 // component calls action generator
 // action generator returns object
@@ -21,13 +22,15 @@ export const addExpense = (expense) => ({
 
 // saving data to db - async action
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        // user id
+        const uid = getState().auth.uid;
         // destructure data and set default
         const { description = '', note = '', amount = 0, createdAt = 0 } = expenseData;
         const expense = { description, note, amount, createdAt };
 
         // access firebase and save data
-        return database.ref('expenses').push(expense).then((ref) => {
+        return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {
             // dispatch data
             dispatch(addExpense({
                 id: ref.key,
@@ -45,9 +48,10 @@ export const removeExpense = ({ id } = {}) => ({
 
 // removing expense from db - async action
 export const startRemoveExpense = ({ id } = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         // remove data
-        return database.ref(`expenses/${id}`).remove().then(() => {
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
             // dispatch data
             dispatch(removeExpense({ id }));
         });
@@ -63,9 +67,10 @@ export const editExpense = ((id, updates) => ({
 
 // update data to db - async action
 export const startEditExpense = (id, updates) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         // access firebase and update data
-        return database.ref(`expenses/${id}`).update(updates).then(() => {
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             // dispatch data
             dispatch(editExpense(id, updates));
         });
@@ -80,9 +85,10 @@ export const setExpenses = (expenses) => ({
 
 // Fetch the data from db and dispatch - async action
 export const startSetExpenses  = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         // 1. fetching data arrays once
-        return database.ref('expenses').once('value').then((snapshot) => {
+        return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             const expenses = [];
             console.log(snapshot.val());
             
