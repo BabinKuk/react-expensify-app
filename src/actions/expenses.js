@@ -90,7 +90,7 @@ export const startSetExpenses  = (expenseData = {}) => {
         // 1. fetching data arrays once
         return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             const expenses = [];
-            console.log(snapshot.val());
+            console.log('snapshot', snapshot.val());
             
             // 2. parse data into array
             snapshot.forEach((childSnapshot) => {

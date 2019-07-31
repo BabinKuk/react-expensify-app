@@ -8,12 +8,14 @@ export const LoginPage = ({ startLogin }) => (
             <h1 className="box-layout__title">Expensify App</h1>
             <p>It's time to get your expenses under control.</p>
             <button onClick={startLogin} className="button">Login with Google</button>
+            {/*<button onClick={startGitLogin} className="button">Login with Git</button>*/}
         </div>
     </div>
 );
 
 const mapDispatchToProps = (dispatch) => ({
     startLogin: () => dispatch(startLogin())
+    //startGitLogin: () => dispatch(startGitLogin())
 });
 
 export default connect(undefined, mapDispatchToProps)(LoginPage);

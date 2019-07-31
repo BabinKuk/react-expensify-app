@@ -11,6 +11,13 @@ export const startLogin = () => {
     };
 };
 
+/*export const startGitLogin = () => {
+    console.log('Git login');
+    return () => {
+        return firebase.auth().signInWithPopup(googleAuthProvider);
+    };
+};*/
+
 export const logout = () => ({
     type: 'LOGOUT'
 });
