@@ -17,3 +17,10 @@
 .button--secondary {
     background: $grey;
 }
+
+.button--login {
+    border-radius: 50%;
+    &:hover {
+        cursor: pointer;
+    }
+}

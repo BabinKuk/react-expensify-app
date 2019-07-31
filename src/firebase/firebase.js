@@ -16,10 +16,11 @@ firebase.initializeApp(firebaseConfig);
 // init database
 const database = firebase.database();
 
-// init provider to     enable authentication with google
+// init providers to enable authentication
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const githubAuthProvider = new firebase.auth.GithubAuthProvider();
 
-export { firebase, googleAuthProvider, database as default };
+export { firebase, googleAuthProvider, githubAuthProvider, database as default };
 
 // TEST
 // // // add test data

@@ -12,11 +12,16 @@
     background: fade-out($color: white, $amount: .15);
     border-radius: 3px;
     text-align: center;
-    width: 25rem;
+    width: 35rem;
     padding: $l-size $m-size;
 }
 
 .box-layout__title {
     margin: 0 0 $m-size 0;
     line-height: 1;
+}
+
+.box-layout__buttons {
+    display: flex;
+    justify-content: space-around;
 }
